@@ -6,4 +6,3 @@ branches:
     tag: beta
 ignore:
   sha: []
-  commits-before: 2019-01-14T00:00:00

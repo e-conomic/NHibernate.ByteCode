@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate.ByteCode.Castle", "NHibernate.ByteCode.Castle\NHibernate.ByteCode.Castle.csproj", "{31C3F0EA-0FED-4A2F-B68D-96CE29844487}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate.ByteCode.LinFu", "NHibernate.ByteCode.LinFu\NHibernate.ByteCode.LinFu.csproj", "{8289D6AD-9714-42D3-A94D-D4D9814D1281}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{31C3F0EA-0FED-4A2F-B68D-96CE29844487}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31C3F0EA-0FED-4A2F-B68D-96CE29844487}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31C3F0EA-0FED-4A2F-B68D-96CE29844487}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8289D6AD-9714-42D3-A94D-D4D9814D1281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8289D6AD-9714-42D3-A94D-D4D9814D1281}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8289D6AD-9714-42D3-A94D-D4D9814D1281}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8289D6AD-9714-42D3-A94D-D4D9814D1281}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
