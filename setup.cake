@@ -69,14 +69,14 @@ Task("Package")
         EnsureDirectoryExists("./artifacts");
         CleanDirectories("./artifacts");
 
-        var directories = GetSubDirectories(".");
+        var directories = GetSubDirectories("./src/");
 
         foreach(var directoryPath in directories){
             FileInfo fi = new FileInfo(directoryPath.ToString());
             
             if (fi.Name.StartsWith("NHibernate.") && !fi.Name.EndsWith(".Tests")){
                 Information($"Copying {fi.Name} info artifacts");
-                CopyDirectory($"./{fi.Name}/bin/", "artifacts");
+                CopyDirectory($"./src/{fi.Name}/bin/", "artifacts");
             }
         }
 
