@@ -1,0 +1,74 @@
+image: Visual Studio 2017
+# Tests
+test: off
+
+assembly_info:
+  # We'll version the binaries and the NuGet package in the build script
+  patch: false
+
+skip_commits:
+  files:
+    - .gitignore
+    - LICENSE
+    - README.md
+    - GitVersion.yml
+    - appveyor.yml
+
+force_https_clone: true
+
+#---------------------------------#
+#        Branches to build        #
+#---------------------------------#
+branches:
+  # Whitelist
+  only:
+    - develop
+    - master
+    - /release/.*/
+    - /hotfix/.*/
+
+install:
+  - choco install gitversion.portable -pre -y
+
+before_build:
+  - nuget restore
+  - ps: gitversion $env:APPVEYOR_BUILD_FOLDER /l console /output buildserver /updateAssemblyInfo /nofetch /b $env:APPVEYOR_REPO_BRANCH
+
+build_script:
+  - ps: .\build.ps1 -Script setup.cake -Verbosity Diagnostic
+
+artifacts:
+  - path: '*.nupkg'
+    name: Nuget Package
+    type: NugetPackage
+  
+notifications:
+  - provider: Slack
+    auth_token:
+      secure: EM7e9Oq86PmPk4/CjWAuPAXGvEOETQIMb9+KCibIzF1a9BQGlNorpelIPBiP4QmNO8yGhvlYA+i8i+0j4f81M/izAgv7Zf7ULWtkr/UHFnc=
+    channel: '#dev-appveyor'
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: true
+
+deploy:
+  - provider: Environment
+    name: myget
+    on:
+      appveyor_repo_tag: true
+  - provider: Environment
+    name: AppveyorNuget
+    on:
+      appveyor_repo_tag: true
+  - provider: GitHub
+    description: "Appveyor release"
+    tag: $(APPVEYOR_REPO_TAG_NAME)
+    auth_token:
+      secure: ipJ+t1wwBZhYlH5y/0Wt5pTM9zF/uYq5c+4JMlVGkvkUSo5Ugou/P5KMn7XxOPE0
+    artifacts: /.*\.nupkg/
+    draft: false
+    prerelease: false
+    on:
+      APPVEYOR_REPO_TAG: true
+
+skip_branch_with_pr: true
