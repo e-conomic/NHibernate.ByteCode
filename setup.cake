@@ -33,7 +33,9 @@ Task ("Version")
         });
 
         CreateAssemblyInfo(AssemblyInfoPath, new AssemblyInfoSettings {
-            InformationalVersion = versionInfo.InformationalVersion
+            InformationalVersion = versionInfo.InformationalVersion,
+            FileVersion = versionInfo.AssemblySemFileVer,
+            Version = versionInfo.AssemblySemVer
         });
         
         GitVersion(new GitVersionSettings{

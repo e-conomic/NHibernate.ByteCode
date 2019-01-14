@@ -31,7 +31,7 @@ install:
   - choco install gitversion.portable -pre -y
 
 before_build:
-  - ps: gitversion $env:APPVEYOR_BUILD_FOLDER /l console /output buildserver /updateAssemblyInfo /nofetch /b $env:APPVEYOR_REPO_BRANCH
+  - ps: gitversion $env:APPVEYOR_BUILD_FOLDER /l console /output buildserver /nofetch /b $env:APPVEYOR_REPO_BRANCH
 
 build_script:
   - ps: .\build.ps1 -Script setup.cake -Verbosity Diagnostic
